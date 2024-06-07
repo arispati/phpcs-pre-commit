@@ -10,12 +10,12 @@ Run phpcs before git commit
 - Laravel >= ^10.0 | ^11.0
 
 ### Installation
-- Add this command to your composer.jon in script section on `post-install-cmd`  and `post-update-cmd`
+- Add this command to your composer.json in script section on `post-install-cmd`  and `post-update-cmd`
 ```bash
 php artisan arispati:phpcs-install
 ```
-Example
 ```json
+// composer.json
 {
     ...
     "scripts": {
@@ -33,4 +33,28 @@ Example
 - Then install the package with composer
 ```bash
 composer require --dev arispati/phpcs-pre-commit
+```
+
+- Now when you commit the changes and got an error, its look like this
+```bash
+[PRE-COMMIT] Running PHP_CodeSniffer using the PSR12 standard
+
+E 1 / 1 (100%)
+
+FILE: ...~/HomeController.php
+--------------------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 4 LINES
+--------------------------------------------------------------------------------
+ 11 | ERROR | [x] Line indented incorrectly; expected 8 spaces, found 4
+ 11 | ERROR | [x] Expected 1 space after closing parenthesis; found newline
+ 12 | ERROR | [x] Line indented incorrectly; expected at least 8 spaces, found 4
+ 13 | ERROR | [x] Line indented incorrectly; expected at least 12 spaces, found 8
+ 14 | ERROR | [x] Line indented incorrectly; expected 8 spaces, found 4
+--------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+--------------------------------------------------------------------------------
+
+Time: 138ms; Memory: 10MB
+
+[PRE-COMMIT] Please fix all of the violations or commit with the --no-verify option
 ```
