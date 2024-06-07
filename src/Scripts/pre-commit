@@ -19,7 +19,7 @@ echo
 # Retrieve staged files
 FILES=$(git diff --cached --name-only --diff-filter=ACMR HEAD)
 # PHPCS command
-PHPCS=("$BIN/phpcs" "--standard=$STANDARD" "--filter=gitstaged" "--encoding=utf-8" "-p" ".")
+PHPCS=("$BIN/phpcs" "--standard=$STANDARD" "--filter=GitStaged" "--extensions=php" "--encoding=utf-8" "-p" ".")
 "${PHPCS[@]}"
 
 if [ $? != 0 ]
