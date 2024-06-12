@@ -3,6 +3,7 @@
 namespace Arispati\PhpcsPreCommit\Providers;
 
 use Arispati\PhpcsPreCommit\Commands\Install;
+use Arispati\PhpcsPreCommit\Commands\Uninstall;
 use Illuminate\Support\ServiceProvider;
 
 class PhpcsPreCommitServiceProvider extends ServiceProvider
@@ -16,7 +17,8 @@ class PhpcsPreCommitServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Install::class
+                Install::class,
+                Uninstall::class
             ]);
         }
     }

@@ -4,15 +4,16 @@ Run phpcs before git commit
 ## Table of Contents
 - [Requirement](#requirement)
 - [Installation](#installation)
+- [Uninstall](#uninstall)
 
 ### Requirement
 - PHP >= ^8.2 | ^8.3
 - Laravel >= ^10.0 | ^11.0
 
 ### Installation
-- Add this command to your composer.json in script section on `post-install-cmd`  and `post-update-cmd`
+- Add this command to your composer.json on script section at `post-install-cmd`  and `post-update-cmd` attribute
 ```bash
-php artisan arispati:phpcs-install
+@php artisan arispati:phpcs-install
 ```
 ```json
 // composer.json
@@ -57,4 +58,16 @@ PHPCBF CAN FIX THE 5 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 Time: 138ms; Memory: 10MB
 
 [PRE-COMMIT] Please fix all of the violations or commit with the --no-verify option
+```
+
+### Uninstall
+- Run this command to remove git hook script
+```bash
+php artisan arispati:phpcs-uninstall
+```
+
+- Remove composer script `@php artisan arispati:phpcs-install` both `post-install-cmd` and `post-update-cmd` attribute
+- Then remove the package with composer
+```bash
+composer remove --dev arispati/phpcs-pre-commit
 ```

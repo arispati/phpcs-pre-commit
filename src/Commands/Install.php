@@ -28,14 +28,12 @@ class Install extends Command
      */
     public function handle(): void
     {
+        // check hook file
+        $isPreCommitExists = File::exists(App::basePath('.git/hooks/pre-commit'));
         // write message
-        $this->line('Arispati: installing git hook');
+        $this->line(sprintf('Arispati: %s git hook script', $isPreCommitExists ? 'updating' : 'installing'));
         if (Config::get('app.env') != 'production') {
-            // write message
-            $this->line('Arispati: validating script file');
             if (File::exists(App::basePath('vendor/arispati/phpcs-pre-commit/src/Scripts/pre-commit'))) {
-                // write message
-                $this->line('Arispati: script file found');
                 // copy file
                 File::copy(
                     App::basePath('vendor/arispati/phpcs-pre-commit/src/Scripts/pre-commit'),
@@ -44,7 +42,7 @@ class Install extends Command
                 // chmod the file
                 File::chmod(App::basePath('.git/hooks/pre-commit'), 0755);
                 // write message
-                $this->line('Arispati: script file installed');
+                $this->line(sprintf('Arispati: git hook script %s', $isPreCommitExists ? 'updated' : 'installed'));
             } else {
                 // write message
                 $this->line('Arispati: script file not found, installation aborted');
